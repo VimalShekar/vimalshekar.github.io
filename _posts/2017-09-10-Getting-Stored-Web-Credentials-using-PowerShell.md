@@ -8,7 +8,7 @@ category: ScriptSamples
 Interested in dumping all the passwords stored in the Web Credentials portion of the Windows Credential Manager? 
 Well, a .NET class exposes methods to do this and you can easily invoke these from PowerShell. 
 Windows.Security.Credentials.PasswordVault documented here : https://docs.microsoft.com/en-us/uwp/api/windows.security.credentials.passwordvault
-
+ 
 
 The documentation says – “contents of the locker are specific to the app or service. Apps and services don’t have access to credentials associated with other apps or services”. This is only true when you are running within a WinRT container. If you call this class outside of a WinRT container – it gives you access to all credentials in the locker.
 
