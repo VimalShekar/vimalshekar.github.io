@@ -1,3 +1,4 @@
 name: Vimal's Lab
 theme: jekyll-theme-hacker
 author: "vimal.shekar"
+permalink: /blog/:year/:title
