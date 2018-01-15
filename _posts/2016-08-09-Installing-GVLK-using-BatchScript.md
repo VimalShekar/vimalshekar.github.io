@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Getting User Names and Passwords from Windows Credential Manager using PowerShell - Part 2 - Windows Credentials
+title: Batch script to install Generic Volume License Keys during Specialize phase of Sysprep.
 date: 2016-08-09
 category: ScriptSamples
 ---
