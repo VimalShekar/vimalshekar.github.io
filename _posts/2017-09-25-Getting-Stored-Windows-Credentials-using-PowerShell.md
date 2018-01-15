@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Getting User Names and Passwords from Windows Credential Manager using PowerShell - Part 2 - Windows Credentials
-date: 2017-09-10
+date: 2017-09-25
 category: ScriptSamples
 ---
 
