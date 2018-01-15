@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Getting User Names and Passwords from Windows Credential Manager using PowerShell - Part 1 - Windows Credentials
+title: Getting User Names and Passwords from Windows Credential Manager using PowerShell - Part 2 - Windows Credentials
 date: 2017-09-10
 category: ScriptSamples
 ---
@@ -9,12 +9,12 @@ In Part 1 of this series, we found a way to dump the Web Credentials portion of 
 
 I have written a C# wrapper class that imports the API. After we call the function, we get back an array of CREDENTIAL structures.
 <code>
+
     [DllImport("Advapi32.dll", SetLastError = true, EntryPoint = "CredEnumerate")]
     public static extern bool CredEnumerate([In] string Filter, [In] int Flags, out int Count, out IntPtr CredentialPtr);    
+    ...
+    CredEnumerate(Filter, Flags, out count, out pCredentials)  
 
-    ...<snip>...
-
-    CredEnumerate(Filter, Flags, out count, out pCredentials)    
 </code>
 
 
