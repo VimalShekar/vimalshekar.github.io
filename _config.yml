@@ -1,11 +1,3 @@
+name: Vimal's Lab
 theme: jekyll-theme-hacker
-
-
-defaults:
-  scope:
-    path: "" # Applies to all files
-    type: "posts"    
-  values:
-    theme: jekyll-theme-hacker
-    author: "vimal.shekar"
-    permalink: /:title.html
+author: "vimal.shekar"

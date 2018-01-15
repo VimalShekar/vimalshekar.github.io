@@ -1,4 +1,6 @@
 ## Welcome to Vimal's Lab!
+==========================
+
 
 Hi There!
 
@@ -10,8 +12,8 @@ I don't intend to make any profit, harm or hurt anyone in any way - with the con
 
 ## Welcome to Vimal's Lab!
 
-List of Posts by Category {% link posts_by_category.md %}
-List of Posts by Date {% link posts_by_date.md %}
+[List of Posts by Category]({% link posts_by_category.md %})
+[List of Posts by Date]({% link posts_by_date.md %})
 
 
 
