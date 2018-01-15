@@ -1,4 +1,12 @@
+---
+layout: post
+title: Welcome to Vimal's lab!
+---
+
+
 ## Welcome to Vimal's Lab!
+
+
 
 Hi There!
 
