@@ -2,7 +2,7 @@
 layout: post
 title: Checking if .NET framework is present in PowerShell
 date: 2017-09-15
-category: Personal
+category: ScriptSamples
 ---
 
 Many a times, we have to check the version of Powershell to understand whether or not an assembly/namespace is available on the machine. Microsoft documentation recommends checking the *HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\NET Framework Setup\NDP* registry key.
