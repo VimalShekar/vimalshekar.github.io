@@ -33,8 +33,12 @@ Thanks,
 Vimal
 
  
-``` markdown
+```
 
 If you want to reach me for any reason:
     LinkedIn    : https://www.linkedin.com/in/vimalsh/
     Email       : vimalsh@live.com 
+
+```
+
+[My Old Blog](http://vimalshekar.ml)
