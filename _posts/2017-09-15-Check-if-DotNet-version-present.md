@@ -18,9 +18,4 @@ For version 4, the string becomes "v4". You should also check the release versio
 
 Refer: https://docs.microsoft.com/en-us/dotnet/framework/migration-guide/how-to-determine-which-versions-are-installed
 
-For version 4, the string becomes "v4". You should also check the release version under *HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full -- Release key*
-
-
-Refer: https://docs.microsoft.com/en-us/dotnet/framework/migration-guide/how-to-determine-which-versions-are-installed
-
 Hope this helps
