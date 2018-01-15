@@ -8,23 +8,25 @@
   </head>
 
   <body>
-   
+    <header>
     <div class="container">
         <section id="navigation_menu">
                 <nav> 
-                  <li><a href="/">Home</a></li> | <li><a href="/blog">Blog</a></li>
+                  <a href="/">About Me</a> | <a href="/blog">My Blogs</a>
                 </nav>
         </section>
-      <section id="main_content">
-        {{ content }}
-      </section>
     </div>
-
+    </header>
+    <br />
+    <section id="main_content">
+        {{ content }}
+    </section>
+    <br />
     <footer>
-        <ul>
-            <li><a href="mailto:vimalsh@live.com">email</a></li>
-            <li><a href="https://github.com/VimalShekar">github.com/vimalshekar</a></li>
-        </ul>
+        <nav>
+            email: <a href="mailto:vimalsh@live.com">vimalsh@live.com</a> | 
+            Github: <a href="https://github.com/VimalShekar">https://github.com/vimalshekar</a>
+        </nav>
     </footer>
   </body>
 </html>
