@@ -1,8 +1,15 @@
 ---
 layout: post
-title: "Hank Quinlan, Horrible Cop, Launches Site"
-date: 2014-04-30
+title: "Australia Prep "
+date: 2018-01-15 12:00:00
 category: Personal
 ---
 
-Well. Finally got around to putting this old website together. Neat thing about it - powered by [Jekyll](http://jekyllrb.com) and I can use Markdown to author my posts. It actually is a lot easier than I thought it was going to be.
+Well. Finally I'm all set to travel to the land of oppurtunities, Australia.
+
+I'm on the lookout for interesting development, testing, reverse engineering and research opportunities that focuses on applying technology to solve problems and challenges and make human life simpler.
+
+![Quick Snapshot of my skillset]({{ site.baseurl }}{% link /documents/SkillSnapshot.pdf %})
+
+If you have something open - please reach me at my email : vimalsh@live.com
+
