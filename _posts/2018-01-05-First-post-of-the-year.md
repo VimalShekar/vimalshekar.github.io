@@ -12,7 +12,7 @@ Today was an eventful day. I bid adieu to my company - Attivo and will soon migr
 
 I've not been a big fan of blogging, and I hadn't really posted any of my code online for others to use. My <b><a href="http://vimalshekar.ml">old blog</a></b> was pretty basic,
 it had some scripts I wrote in the past, and some debugging lessons. I didn't have enough time to maintain it, or rather didn't think it needed time. 
-
+ 
 Then recently, I've received emails from several people appreciating the script and asking for help with modifying some of them. This sudden chain of appreciation and realisation that my blog has visitors
 - struck me. I thought to myself - "I had never intended the blog for visitors, I just put stuff up for my own references. And Now its helping others too ?, wow :) Afterall helping others adds to good karma :)"
 

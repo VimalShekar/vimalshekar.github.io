@@ -9,7 +9,7 @@ Many a times, we have to check the version of Powershell to understand whether o
 
 Here’s a function I wrote to find out if the version of .NET on the machine is greater than 2.0:
 <script src="https://gist.github.com/VimalShekar/8cfabf6361c6e313c5c829eb36c32035.js"></script>
-
+ 
 You can modify the version string to check the desired version. For example, I changed the string to look for 3.5 or later:
 <script src="https://gist.github.com/VimalShekar/099b7f08d656fe075edf6a24fed1c578.js"></script>
 
