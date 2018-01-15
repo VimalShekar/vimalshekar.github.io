@@ -1,12 +1,7 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: "en-US" }}">
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
-  </head>
+<html lang="{{ site.lang | default: " en-US " }}">
 
+<<<<<<< HEAD
   <body>
     <header>
     <div class="menu_bar">
@@ -31,4 +26,42 @@
         </nav>
     </footer>
   </body>
+=======
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <section id="navigation_menu">
+        <nav>
+          <a href="/">About Me</a> |
+          <a href="/blog">My Blogs</a>
+        </nav>
+      </section>
+    </div>
+  </header>
+  <br />
+  <div class="container">
+    <section id="main_content">
+      {{ content }}
+    </section>
+  </div>
+  <br />
+  <footer>
+    <div class="container">
+    <nav>
+      email:
+      <a href="mailto:vimalsh@live.com">vimalsh@live.com</a> | Github:
+      <a href="https://github.com/VimalShekar">https://github.com/vimalshekar</a>
+    </nav>
+    </div>
+  </footer>
+</body>
+
+>>>>>>> Redbook-Branch
 </html>
