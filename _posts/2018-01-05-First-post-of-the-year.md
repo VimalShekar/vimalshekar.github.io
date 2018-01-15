@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Migrating from wordpress to Jekyll
+category: Personal
 ---
 
 {{page.title}}

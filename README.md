@@ -1,9 +1,3 @@
----
-layout: post
-title: Welcome to Vimal's lab!
----
-
-
 ## Welcome to Vimal's Lab!
 
 
@@ -50,3 +44,14 @@ If you want to reach me for any reason:
 ```
 
 [My Old Blog](http://vimalshekar.ml)
+
+
+## Posts:
+
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+    </li>
+  {% endfor %}
+</ul>

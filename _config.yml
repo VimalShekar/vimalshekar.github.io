@@ -6,7 +6,6 @@ defaults:
     path: "" # Applies to all files
     type: "posts"    
   values:
-    layout: "default"
     theme: jekyll-theme-hacker
     author: "vimal.shekar"
-    permalink: /:categories/:title.html
+    permalink: /:title.html
