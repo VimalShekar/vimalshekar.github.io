@@ -10,15 +10,6 @@ This is just a place where I post as I learn and explore technologies. Here you 
 
 I don't intend to make any profit, harm or hurt anyone in any way - with the content here. I would appreciate it if you let me know if you find something derogatory. On the other hand, if you find something useful - be sure to leave a comment for that as well, It's a feel good factor for me.... :)
 
-## Welcome to Vimal's Lab!
-
-[List of Posts by Category]({% link posts_by_category.md %})
-[List of Posts by Date]({% link posts_by_date.md %})
-
-
-
-
-
 ## A little about myself!
 I am a software developer with about 8 years of IT experience. I started my career with Microsoft as a support engineer - troubleshooting/supportinf Microsoft's Enterprise customers. Soon I was promoted to the Beta engineer role (I was the youngest Beta engineer at the time) - where I was involved in testing pre-release versions of Windows 8 & 8.1. In these roles, I gained good architecture knowledge about Windows, and started to build my areas of focus. 
 
@@ -47,14 +38,3 @@ If you want to reach me for any reason:
 ```
 
 [My Old Blog](http://vimalshekar.ml)
-
-
-## Posts:
-
-<ul>
-  {% for post in site.posts %}
-    <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
-    </li>
-  {% endfor %}
-</ul>
