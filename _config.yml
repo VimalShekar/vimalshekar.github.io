@@ -1,4 +1,6 @@
 name: Vimal's Lab
+title: Vimal's Lab
+description: ""
 theme: jekyll-theme-hacker
 author: "vimal.shekar"
 permalink: /blog/:year/:title

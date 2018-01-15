@@ -1,10 +1,9 @@
 ---
 layout: default
-title: Hank Quinlan's Blog
+title: Vimal's Lab: Blogs
 ---
 
-
-    <h1>{{ page.title }}</h1>
+<h1>{{ page.title }}</h1>
     
     
 ## Posts by Category:
@@ -27,13 +26,12 @@ title: Hank Quinlan's Blog
   {% endfor %}
 </ul>
 
-
 - - - - -
 
-	<ul class="posts">
-	  {% for post in site.posts %}
-	    <li><span>{{ post.date | date_to_string }}</span> » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
-	  {% endfor %}
-    </ul>
-    
+## Another list of Entries
+<ul class="posts">
+    {% for post in site.posts %}
+    <li><span>{{ post.date | date_to_string }}</span> » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
+    {% endfor %}
+</ul>
     

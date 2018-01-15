@@ -1,27 +1,33 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>{{ page.title }}</title>
-        <!-- link to css theme -->
-        <link rel="stylesheet" type="text/css" href="/css/style.css">
-    </head>
-    <body>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/blog">Blog</a></li>
-            </ul>
-        </nav>
-        <div class="container">
-        
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+
+{% seo %}
+  </head>
+
+  <body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog">Blog</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+      <section id="main_content">
         {{ content }}
-        
-        </div><!-- /.container -->
-        <footer>
-            <ul>
-                <li><a href="mailto:vimalsh@live.com">email</a></li>
-                <li><a href="https://github.com/VimalShekar">github.com/vimalshekar</a></li>
-            </ul>
-        </footer>
-    </body>
+      </section>
+    </div>
+
+    <footer>
+        <ul>
+            <li><a href="mailto:vimalsh@live.com">email</a></li>
+            <li><a href="https://github.com/VimalShekar">github.com/vimalshekar</a></li>
+        </ul>
+    </footer>
+  </body>
 </html>
