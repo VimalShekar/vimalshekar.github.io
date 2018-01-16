@@ -4,3 +4,5 @@ description: ""
 theme: jekyll-theme-hacker
 author: "vimal.shekar"
 permalink: /blog/:year/:title
+plugins:
+  - jekyll-sitemap
