@@ -1,15 +1,15 @@
 ---
 layout: post
 category: Reverse-Engg
-title: Debugged a hung net.exe process with public symbols
+title: Exploring the Windows Executive - Part 1 - Object Manager
 date: 2016-10-16
 ---
 
 The Windows object manager is responsible for creating, protecting and managing objects. Internally – it has 3 types:
 
-> -> kernel objects : primitive set of objects implemented in the kernel.
-> -> executive objects : implemented in components of the kernel.
-> -> GDI/User objects : belong within Windows subsystem and are not used by kernel.
+> * kernel objects : primitive set of objects implemented in the kernel.
+> * executive objects : implemented in components of the kernel.
+> * GDI/User objects : belong within Windows subsystem and are not used by kernel.
 
 Other than this, there is something called “Type Objects”. To save memory, object manager saves static content for objects of the same type under a Typeobject. Any object created of a specific type will inherit the type object’s properties from the TypeObject.
 
@@ -19,7 +19,7 @@ The object handle is an index into the process specific Handle Table. The index 
 
 You can get to the kernel handle table by looking at the address pointed to by ObpKernelHandleTable. Addresses have the MSB bit as 1 – that is how OM knows this is a kernel handle.
 
-{% highlight cpp %}
+{% highlight asm %}
 0: kd> dt ObpKernelHandletable
 nt!ObpKernelHandleTable
 0xfffff8a0`000018e0 
@@ -49,11 +49,11 @@ The !object extension displays information about a system object.
 
 ```
 Where:
-> Address - Specifies the hexadecimal address of the system object for which to display information.
-> Name - If the first argument is zero, the second argument is interpreted as the name of a class of system objects for which to display all instances.
-> Path - If the first argument begins with a backslash (\), !object interprets it as an object path name. When this option is used, the display will be arranged according to the directory structure used by the Object Manager.
+* Address - Specifies the hexadecimal address of the system object for which to display information.
+* Name - If the first argument is zero, the second argument is interpreted as the name of a class of system objects for which to display all instances.
+* Path - If the first argument begins with a backslash (\), !object interprets it as an object path name. When this option is used, the display will be arranged according to the directory structure used by the Object Manager.
 
-{% highlight cpp %}
+{% highlight asm %}
 0: kd> !object \
 Object: 86a05750  Type: (85261eb0) Directory
     ObjectHeader: 86a05738 (new version)
@@ -106,7 +106,7 @@ The \Driver directory contains all driver objects
 The \Device directory contains all the device objects
 The \ObjectTypes directory contains Type objects for the various object types available.
 
-{% highlight cpp %}
+{% highlight asm %}
 0: kd> !object \ObjectTypes
 Object: 86a05468  Type: (85261eb0) Directory
     ObjectHeader: 86a05450 (new version)
@@ -163,7 +163,7 @@ The \BaseNamedObjects is the global namespace (as opposed to session namespace)
 
 The \Sessions directory contains per session namespaces. When an application creates an object, it typically goes into it respective session unless the application has specifically asked OS to place objects in the Global namespace. Separate session namespaces allow multiple clients to run the same application without interfering with each other. By Default – for a process that’s created in a session, the system uses the session’s namespace unless the process wants to use the global namespace and prepends Global\ prefix to the object name.
 
-{% highlight cpp %}
+{% highlight asm %}
 0: kd> !object \Sessions
 Object: 9335e530  Type: (85261eb0) Directory
     ObjectHeader: 9335e518 (new version)
@@ -181,7 +181,7 @@ Object: 9335e530  Type: (85261eb0) Directory
 
 The \Global?? – is the namespace where named symbolic links are created for use by all applications. The C: can be found here.
 
-{% highlight cpp %}
+{% highlight asm %}
 0: kd> !object \global??
 Object: 86a05128  Type: (85261eb0) Directory
     ObjectHeader: 86a05110 (new version)
@@ -218,7 +218,7 @@ Object: 86bda030  Type: (85261de8) SymbolicLink
 
 The C: is a symbolic link for target ‘\Device\hardDiskVolume2’. Lets explore this device object
 
-{% highlight cpp %}
+{% highlight asm %}
 0: kd> !object \Device\HarddiskVolume2
 Object: 8a7fa540  Type: (852cd040) Device  <<-- The Type of the object gives more details about how this object is handled.
     ObjectHeader: 8a7fa528 (new version)
@@ -279,7 +279,7 @@ Object: 8a7fa540  Type: (852cd040) Device  <<-- The Type of the object gives mor
 
 Now that we know the object type details, lets dump the object’s header(objectheader) and body(deviceobject)
 
-{% highlight cpp %}
+{% highlight asm %}
 0: kd> !object 86bda030   
 Object: 86bda030  Type: (85261de8) SymbolicLink  <-- object
     ObjectHeader: 86bda018 (new version)  <<--header
