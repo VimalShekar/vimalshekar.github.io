@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Creating a bootable WinPE iso/image for offline Windows hacking
-date: 2018-01-18
+title: Checking for Admin Privilege in C++, C# and PowerShell
+date: 2018-01-16
 category: CodeSamples 
 ---
 

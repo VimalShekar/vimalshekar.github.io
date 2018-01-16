@@ -39,7 +39,7 @@ Here are the steps I followed to make my WinPE image.
 	<mountfolder> was `C:\WinPE_amd64\mount`
 
 	
-	```
+	{% highlight bash%}
 	Dism /Add-Package /Image:"<mountfolder>" /PackagePath:"<ADKfolder>\Windows Preinstallation Environment\<arch>\WinPE_OCs\WinPE-WMI.cab"
 	Dism /Add-Package /Image:"<mountfolder>" /PackagePath:"<ADKfolder>\Windows Preinstallation Environment\<arch>\WinPE_OCs\en-us\WinPE-WMI_en-us.cab"
 	Dism /Add-Package /Image:"<mountfolder>" /PackagePath:"<ADKfolder>\Windows Preinstallation Environment\<arch>\WinPE_OCs\WinPE-NetFX.cab"
@@ -52,7 +52,7 @@ Here are the steps I followed to make my WinPE image.
 	Dism /Add-Package /Image:"<mountfolder>" /PackagePath:"<ADKfolder>\Windows Preinstallation Environment\<arch>\WinPE_OCs\en-us\WinPE-StorageWMI_en-us.cab"
 	Dism /Add-Package /Image:"<mountfolder>" /PackagePath:"<ADKfolder>\Windows Preinstallation Environment\<arch>\WinPE_OCs\WinPE-DismCmdlets.cab"
 	Dism /Add-Package /Image:"<mountfolder>" /PackagePath:"<ADKfolder>\Windows Preinstallation Environment\<arch>\WinPE_OCs\en-us\WinPE-DismCmdlets_en-us.cab"
-	```
+	{% endhighlight %}
 
 * Editing startup script if you want to launch your own scripts or executables. The startup script (startnet.cmd) is located here `<mountfolder>\windows\system32\startnet.cmd`. You may have to take ownership of the file and assign write permissions to yourself. Refer: https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/wpeinit-and-startnetcmd-using-winpe-startup-scripts
 	
