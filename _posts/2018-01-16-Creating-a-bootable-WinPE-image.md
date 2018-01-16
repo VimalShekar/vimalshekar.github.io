@@ -10,6 +10,7 @@ but that wouldn't be fun, right?. So I decided to make myself a WinPE image that
 
 
 ** What is WinPE? **
+
 WinPE - stands for Windows Pre-installation Environment. WinPE is a light weight bootable ISO which can be customized to do tasks and service an offline operating system. If you boot to a WinPE, you basically have full access to the file system and can modify files and registry without a problem (assuming Bitlocker was not enabled, offcourse).
 
 The Power of WinPE is under-explained in my post for obvious reasons (I'm on the good guy's side, remember). But I'll tell you this - If you want to offline hack a Windows installation - a winPE iso file loaded with common crack tools and powershell scripts is an ideal weapon. I often prefer this over linux live CDs, mainly because the file system is readily accessible and flexibility of scripting with PowerShell on WinPE cannot be matched.
@@ -34,8 +35,9 @@ Here are the steps I followed to make my WinPE image.
 		Ex: Dism /Mount-Image /ImageFile:"<winpe_source>\media\sources\boot.wim" /Index:1 /MountDir:"C:\WinPE_amd64\mount"
 	```	
 
-* WinPE now supports PowerShell. You have to add the below packages to get PowerShell within WinPE. *In the below commands - make sure adk folder and mount folder are replaced with correct paths, and <arch> is replaced with correct architecture (x86 or amd64). In my case
-	<mountfolder> was `C:\WinPE_amd64\mount` *
+* WinPE now supports PowerShell. You have to add the below packages to get PowerShell within WinPE. In the below commands - make sure adk folder and mount folder are replaced with correct paths, and <arch> is replaced with correct architecture (x86 or amd64). In my case
+	<mountfolder> was `C:\WinPE_amd64\mount`
+
 	
 	```
 	Dism /Add-Package /Image:"<mountfolder>" /PackagePath:"<ADKfolder>\Windows Preinstallation Environment\<arch>\WinPE_OCs\WinPE-WMI.cab"
@@ -54,7 +56,7 @@ Here are the steps I followed to make my WinPE image.
 
 * Editing startup script if you want to launch your own scripts or executables. The startup script (startnet.cmd) is located here `<mountfolder>\windows\system32\startnet.cmd`. You may have to take ownership of the file and assign write permissions to yourself. Refer: https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/wpeinit-and-startnetcmd-using-winpe-startup-scripts
 	
-	-  I usually just launch powershell.exe in my startnet.cmd. To do this, I just add powershell.exe at the end of the file.
+I usually just launch powershell.exe in my startnet.cmd. To do this, I just add powershell.exe at the end of the file.
 	
 
 * Now that all changes are done, unmount the WinPE image.
