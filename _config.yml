@@ -3,7 +3,7 @@ title: Vimal's Lab
 description: ""
 theme: jekyll-theme-hacker
 author: "vimal.shekar"
-permalink: /blog/:year/:title
+permalink: /:categories/:title
 comments: True
 plugins:
   - jekyll-sitemap
