@@ -9,8 +9,6 @@ Recently, I was interested in enumerating all the sessions that are active on a 
 
 1. You can use the WTSEnumerateSessionsEx API, to get back an array of WTS_SESSION_INFO_1 structures. The advantage of using WTS API is that you can open a handle to a remote machine and enumerate sessions on that machine.
 
-<code>
-
     //-- Enumerate TS sessions
     WTSEnumerateSessionsEx( 
         WTS_CURRENT_SERVER_HANDLE ,  //<-- To enumerate sessions on the current server>
@@ -19,7 +17,6 @@ Recently, I was interested in enumerating all the sessions that are active on a 
         &pSessionInfo,  //<-- pointer to the array of WTS_SESSION_INFO_1 structures
         &dwCount);      //<-- number of elements in the array.
 
-</code>
 
 2. The second method is to use LsaEnumerateLogonSessions() API to get the logon session LUIDs and then use LsaGetLogonSessionData() API to get details of each session. We'll do this on another day.
 
@@ -28,8 +25,6 @@ Once you have enumerated the sessions and you can make a WMI query to "Win32_Per
 
 Here's a quick walkthrough:
 1. The first step is to initialize the COM infrastructure.
-
-<code>
 
     //-- Initialize COM and set Security 
     if (FAILED (hr = CoInitializeEx(NULL,COINIT_MULTITHREADED)))
@@ -45,11 +40,7 @@ Here's a quick walkthrough:
         goto __cleanup;
     }
 
-</code>
-
 2. Next, create an instance of the Wbem locator and connect to the "root\cimv2" WMI namespace. If we were connecting to a remote machine, the namespace name would be "\\\\<server>\\root\\cimv2"
-
-<code>
 
     if (FAILED (hr = CoCreateInstance( CLSID_WbemLocator, NULL, CLSCTX_INPROC_SERVER, IID_IWbemLocator, (void**) &pWbemLocator)))
     {
@@ -63,11 +54,9 @@ Here's a quick walkthrough:
         printf("\nNot able to connect to the namespace: %d", hr);
         goto __cleanup;
     }
-</code>
 
 3. Create an instance of WbemRefresher class. This class helps us retrieve performance data that is periodically refreshed. Use QueryInterface method to retrieve its IWbemConfigureRefresher interface. We will use this interface to configure the WbemRefresher.
 
-<code>
 
     //-- Create a WbemRefresher instance
     if (FAILED (hr = CoCreateInstance( CLSID_WbemRefresher, NULL, CLSCTX_INPROC_SERVER, IID_IWbemRefresher,  (void**) &pRefresher)))
@@ -83,18 +72,14 @@ Here's a quick walkthrough:
         goto __cleanup;
     }
     
-</code>
 
 4. Add an Enumerator object for the namespace and class that we are interested in. In this case  "Win32_PerfFormattedData_TermService_TerminalServicesSession" class. The AddEnum() method of the IWbemConfigureRefresher returns a pointer to the IWbemHiPerfEnum.
 
-<code>
     pConfig->AddEnum( pNameSpace, L"Win32_PerfFormattedData_TermService_TerminalServicesSession", 0, NULL, &pEnum, &lID);
 
-</code>
 
 5. Now we can call the pRefresher->Refresh(0L) method to get refreshed data any number of times. Use the enumerator to Get the value of the objects. 
 
-<code>
 
         //-- Refresh the data source
         pRefresher->Refresh(0L);
@@ -121,22 +106,18 @@ Here's a quick walkthrough:
                 goto __cleanup;
             }
         } 
-</code>
 
 6. GetObjects() returns an array of objects. Each object in the array has attributes, first you a handle to the attribute's location (this is sort of like getting an offset into where the attribute is within the object). 
 
-<code>
     apEnumAccess[0]->GetPropertyHandle( L"PercentPrivilegedTime", &PercentPrivilegedTime_type, &lPercentPrivilegedTime_value);
     apEnumAccess[0]->GetPropertyHandle( L"PercentProcessorTime", &PercentProcessorTime_type, &lPercentProcessorTime_value);
     apEnumAccess[0]->GetPropertyHandle( L"PercentUserTime", &PercentUserTime_type, &lPercentUserTime_value);
     apEnumAccess[0]->GetPropertyHandle( L"Name", &SessionName, &lSessionName);
-</code>
 
 7. Now that you have handles to all the attributes you are interested in, you can iterate through the object to retrieve the attributes you are interested in and print them.
 
 8. When it comes to cleaning up - again remember that  GetObjects() returns an array of COM objects. So you have to Release() each object in the array by iterating over them, otherwise you would be leaking memory.
 
-<code>
         //-- cleanup apEnumAccess
         if (NULL != apEnumAccess)
         {
@@ -151,7 +132,6 @@ Here's a quick walkthrough:
             delete [] apEnumAccess;
             apEnumAccess = NULL;
         }
-</code> 
 
 9. You can loop through steps 5,6,7 and 8 any number of times, until you have all the samples you need to deterministically tell which sessions are idle. Finally clean up all the COM objects you have instantiated.
 
