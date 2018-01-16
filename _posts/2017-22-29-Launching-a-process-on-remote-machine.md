@@ -8,18 +8,19 @@ category: CodeSamples
 Here's a sample on how to launch a custom executable/payload on a remote machine using WMI. Obviously, valid credentials have to be stolen first before you can connect to the remote machine. The user who is trying to access the remote machine, should be a member of the Local administrators group on the remote machine. 
 
 Here are the basic steps:
-1. The first step is to initialize the COM infrastructure.
+* The first step is to initialize the COM infrastructure.
 
+    {% highlight cpp %}
     //-- Initialize COM.
 	hres = CoInitializeEx(0, COINIT_MULTITHREADED);
 	if (FAILED(hres))
 	{
 		cout << "\nFailed to initialize COM library. Error code = 0x"
 			<< hex << hres << endl;
-		return 1;                  // Program has failed.
+		return 1;
 	}
 	cout << "\nCOM initialised";
-
+    
 	//-- Set general COM security levels
 	hres = CoInitializeSecurity(
 		NULL,
@@ -32,6 +33,7 @@ Here are the basic steps:
 		EOAC_NONE,                   // Additional capabilities 
 		NULL                         // Reserved
 		);
+    {% endhighlight %}
 
 2. Next, create an instance of the Wbem locator and connect to the "root\cimv2" WMI namespace of the remote machine. Since we were connecting to a remote machine, the namespace should be fully qualified : "\\\\<server>\\root\\cimv2"
 
