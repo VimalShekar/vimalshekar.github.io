@@ -4,5 +4,9 @@ description: ""
 theme: jekyll-theme-hacker
 author: "vimal.shekar"
 permalink: /blog/:year/:title
+comments: True
+pages_list:       
+  About: '/README'
+  My Blog: '/blog'
 plugins:
   - jekyll-sitemap
