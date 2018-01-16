@@ -1,9 +1,8 @@
-
 ---
 layout: post
-category: Reverse-Engg
-title: Assembly Language Basics - Part 4
+title: Activating the debugger as soon as the desired process launches its first thread
 date: 2017-02-15
+category: Walkthroughs
 ---
 
 Generally when you are kernel debugging a machine, you may be in an arbitrary process's context. It is difficult to using the stepping commands and wait till the process of your interest starts. If you want to attach to a process or activate the debugger only when the process starts, there's an easier way. Watch for PspInsertProcess, and set a breakpoint on this function.

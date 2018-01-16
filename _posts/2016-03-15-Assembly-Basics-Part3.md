@@ -123,8 +123,8 @@ a byte operand to indicate the status of flags in the EFLAGS register.
 |SETE/SETZ	 | Set byte if equal/Set byte if zero
 |SETNE/SETNZ	 | Set byte if not equal/Set byte if not zero
 |SETA/SETNBE	 | Set byte if above/Set byte if not below or equal
-|SETAE/SETNB/SETNC	| Set byte if above or equal/Set byte if not below/Set byte if |not carry
-|SETB/SETNAE/SETC	| Set byte if below/Set byte if not above or equal/Set byte if |carry
+|SETAE/SETNB/SETNC	| Set byte if above or equal/Set byte if not below/Set byte if not carry
+|SETB/SETNAE/SETC	| Set byte if below/Set byte if not above or equal/Set byte if carry
 |SETBE/SETNA	| Set byte if below or equal/Set byte if not above
 |SETG/SETNLE	| Set byte if greater/Set byte if not less or equal
 |SETGE/SETNL	| Set byte if greater or equal/Set byte if not less

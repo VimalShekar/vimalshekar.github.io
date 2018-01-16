@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title: Capturing the Standard Output of a commandline tool in PowerShell
@@ -13,6 +12,6 @@ Using the ">" operator to pipe the output to a text is one option. But what if I
 Try this sample:
 https://github.com/VimalShekar/PowerShell/blob/master/InvokeCommandLine.ps1
 
-https://github.com/VimalShekar/PowerShell/blob/3f22d0569cde83db10cd5a2712c2670a2d7c6d2e/
+{% github_sample_ref /VimalShekar/PowerShell/blob/master/InvokeCommandLine.ps1 %}
 
 In this sample, I use System.Diagnostics.Process to launch the process and then use the ReadToEnd() method of the Standard output stream to retrieve any messages printed by the process. This retains all formatting and is returned as an object.

@@ -7,8 +7,9 @@ category: CodeSamples
 
 Recently, I was interested in enumerating all the sessions that are active on a terminal server and figuring out which sessions used the least CPU. Enumerating TS sessions is relatively easy to do and there are a couple of ways to do it. 
 
-1. You can use the WTSEnumerateSessionsEx API, to get back an array of WTS_SESSION_INFO_1 structures. The advantage of using WTS API is that you can open a handle to a remote machine and enumerate sessions on that machine.
+* You can use the WTSEnumerateSessionsEx API, to get back an array of WTS_SESSION_INFO_1 structures. The advantage of using WTS API is that you can open a handle to a remote machine and enumerate sessions on that machine.
 
+{% highlight cpp %}
     //-- Enumerate TS sessions
     WTSEnumerateSessionsEx( 
         WTS_CURRENT_SERVER_HANDLE ,  //<-- To enumerate sessions on the current server>
@@ -16,9 +17,9 @@ Recently, I was interested in enumerating all the sessions that are active on a 
         1, 
         &pSessionInfo,  //<-- pointer to the array of WTS_SESSION_INFO_1 structures
         &dwCount);      //<-- number of elements in the array.
+{% endhighlight %}
 
-
-2. The second method is to use LsaEnumerateLogonSessions() API to get the logon session LUIDs and then use LsaGetLogonSessionData() API to get details of each session. We'll do this on another day.
+* The second method is to use LsaEnumerateLogonSessions() API to get the logon session LUIDs and then use LsaGetLogonSessionData() API to get details of each session. We'll do this on another day.
 
 Once you have enumerated the sessions and you can make a WMI query to "Win32_PerfFormattedData_TermService_TerminalServicesSession" class to retrieve performance data from ther Terminal Service provider. This may seem complicated, but once you get the hang of it - its easy. I have a code sample for this here: https://github.com/VimalShekar/Cpp/blob/master/src/termsessioncpu/terminalsessionlist.cpp
 

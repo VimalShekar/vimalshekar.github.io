@@ -19,8 +19,8 @@ The Flags register is a Special purpose register in which every bit has a specia
 |DF (Bit10) |	Direction flag — controls string instructions (MOVS, CMPS, SCAS,LODS, and STOS) |
 |OF (bit 11)| 	Overflow flag. This flag gets set if the integer result is too large a positive number or too small a negative number (excluding the sign-bit) to fit in the destination operand. |
 |TF (bit 8) |	Trap Flag — Set to enable single-step mode for debugging; clear to disable single-step mode.
-|IF (bit 9) |	Interrupt enable flag — Controls the response of the processor to maskable interrupt requests. Set to respond to maskable interrupts; cleared to inhibit maskable |interrupts.
-|IOPL (bits 12	I/O privilege level field and 13) |	This flag indicates the I/O privilege level of the currently running program or task. The current privilege level (CPL) of the currently running program or task must be less |than or equal to the I/O privilege level to access the I/O address space. The POPF and IRET instructions can modify this field only when operating at a CPL of 0. |
+|IF (bit 9) |	Interrupt enable flag — Controls the response of the processor to maskable interrupt requests. Set to respond to maskable interrupts; cleared to inhibit maskable interrupts.
+|IOPL (bits 12	I/O privilege level field and 13) |	This flag indicates the I/O privilege level of the currently running program or task. The current privilege level (CPL) of the currently running program or task must be less than or equal to the I/O privilege level to access the I/O address space. The POPF and IRET instructions can modify this field only when operating at a CPL of 0. |
 
 
 In addition to arithmetic and logic instructions - Some of the flags in the EFLAGS register can be modified directly, using special-purpose instructions. Generally you first save the contents of the flag register by moving it to another register before modifying individual bits. The following instructions can be used to move groups of flags to and from the procedure stack or the EAX register:

@@ -48,34 +48,35 @@ Now let's look at this function's assembly listing:
 The assembly listing of the function is very much different from the C code, there is no head which tells what the arguments are and what the return value is. The above listing is from a binary compiled for x86 platform. The disassembly of every function only has three parts:
 
 * prolog
-```
+{% highlight asm %}
 	push ebp
 	mov ebp,esp
 	sub esp, 04h
-```	
+{% endhighlight %}
+
 The Prolog does the following:
 >	* Saves the frame pointer (EBP) of the caller to stack.
->   * Sets up the frame for the current function, including space for local variables.
+>	* Sets up the frame for the current function, including space for local variables.
 >	* Optionally, it also saves any non-volatile registers from the previous frame
 
 
 * body of the function
-```
+{% highlight asm %}
 	push ecx
 	mov eax,dword ptr [ebp+8]
 	sub eax,dword ptr [ebp+0Ch]
 	mov dword ptr [ebp-4],eax
 	mov eax,dword ptr [ebp-4]
-```	
+{% endhighlight %}	
 The body of the function contains the assembly equivalent of the code written in the higher level language.
 
 
 * epilog
-```
+{% highlight asm %}
 	mov esp,ebp
 	pop ebp
 	ret 
-```
+{% endhighlight %}
 
 The Epilog reverses the effect of the prolog, it performs the following:
 >   * Restore any saved registers

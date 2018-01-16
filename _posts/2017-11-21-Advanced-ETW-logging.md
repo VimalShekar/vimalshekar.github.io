@@ -14,9 +14,9 @@ For this particular issue - Information about job spooling time, rendering time,
 
 
 If you don't want to do it using the UI - you can always use wevtutil command to achieve the same thing. 
-    **wevtutil el**                     -- lists all the event channels
-    **wevtutil sl <logname> /e:true**   -- enables the event channel
-    **wevtutil sl <logname> /e:false**  -- disables the event channel
+    `wevtutil el`                     -- lists all the event channels
+    `wevtutil sl <logname> /e:true`   -- enables the event channel
+    `wevtutil sl <logname> /e:false`  -- disables the event channel
     
 Another option is to use the System.Diagnostics.Eventing.Reader.EventLogConfiguration class in a PowerShell script. Here's my sample script: 
 <script src="https://gist.github.com/VimalShekar/0513fe1170be0b818bbf6d63713b7198.js"></script>

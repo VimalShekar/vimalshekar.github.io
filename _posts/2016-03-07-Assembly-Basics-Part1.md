@@ -27,11 +27,10 @@ Even though the registers sizes changed - a 64 bit register can still be used as
 ** Quick FAQs: **
 
 * Are they really general purpose or do they have any special usages or meaning ?
-
 > Although they are called general purpose registers, from the programming perspective, some of them do have special meanings. 
 
 * Then why not call them Special purpose registers ?
->Well, the name comes as part of convention. Since these registers can be used to store data, address or even for indirection - they are general purpose registers. Certain other registers ( the instruction pointer register - IP for instance) cannot be used to store arbitrary data. So only such registers fall under special purpose registers.
+> Well, the name comes as part of convention. Since these registers can be used to store data, address or even for indirection - they are general purpose registers. Certain other registers ( the instruction pointer register - IP for instance) cannot be used to store arbitrary data. So only such registers fall under special purpose registers.
 
 * Who decides the special meanings/usages of the general purpose registers?
 > It's up to the compiler manufacturer to decide - what each registers will be used for. Microsoft has documented their compiler's behavior on MSDN, if you're reversing code that was compiled on a Microsoft compiler, then it is useful to remember the below table by-heart.
@@ -42,32 +41,35 @@ Even though the registers sizes changed - a 64 bit register can still be used as
 
 # Register Usages:
 
+*32 bit register usage*
+
 |Register | Usage|
 |---------|---------|
 |EAX |	Accumulator for operands and return value register|
 |EBX | 	Pointer to data or general purpose|
-|ECX |	Counter for string and loop operations; holds first |parameter |in | fast call|
-|EDX | 	Pointer to IO or general purpose; holds second parameter ||in | fast call|
-|ESI |	general purpose; pointer to data in the segment pointed to |by |the | DS register; source pointer for string operations|
-|EDI |	general purpose; Pointer to data (or destination) in the ||segment | pointed to by the ES register; destination pointer for ||string | operations|
+|ECX |	Counter for string and loop operations; holds first parameter in fast call|
+|EDX | 	Pointer to IO or general purpose; holds second parameter in fast call|
+|ESI |	general purpose; pointer to data in the segment pointed to by the DS register; source pointer for string operations|
+|EDI |	general purpose; Pointer to data (or destination) in the segment pointed to by the ES register; destination pointer for string operations|
 |ESP |	Stack pointer (in the SS segment)|
 |EBP |	Pointer to stack base/frame pointer|
 
 
-64 bit register usage:
+*64 bit register usage*
+
 |Register | Usage|
 |---------|---------|
-|RAX |	Accumulator; Return value register (volatile)|
+|RAX |	Accumulator; Return value register (volatile) |
 |RBX |	general purpose; pointer to data; must be preserved by callee (non volatile) |
-|RCX |	First integer argument (volatile)|
-|RDX | 	Second integer argument (volatile)|
-|R8 |	Third integer argument (volatile)|
-|R9 |	Fourth integer argument (volatile)|
-|R10:R11 |	 general purpose; (volatile) preserved by caller; used in syscall/sysret instructions|
+|RCX |	First integer argument (volatile) |
+|RDX | 	Second integer argument (volatile) |
+|R8 |	Third integer argument (volatile) |
+|R9 |	Fourth integer argument (volatile) |
+|R10:R11 |	general purpose; (volatile) preserved by caller; used in syscall/sysret instructions |
 |R12:R15 |	general purpose; (non-volatile) must be preserved by callee |
-|RDI | 	general purpose; must be preserved by callee(non-volatile)|
-|RSI | 	general purpose; must be preserved by callee(non-volatile)|
-|RBP | 	general purpose; May be used as a frame pointer; must be preserved by callee(non volatile)|
-|RSP |	Stack pointer(non-volatile)|
+|RDI | 	general purpose; must be preserved by callee(non-volatile) |
+|RSI | 	general purpose; must be preserved by callee(non-volatile) |
+|RBP | 	general purpose; May be used as a frame pointer; must be preserved by callee(non volatile) |
+|RSP |	Stack pointer(non-volatile) |
 
 You will also see the words Volatile and Non-volatile. If a register is marked Volatile, then it can be used freely between function calls. The calling function knows/expects that the value of these registers would have changed in the called function. If a register is marked as non volatile - then every function has to save the values of the register before it can make use of it. So the calling function expects that the caller maintains the values in these registers as it is between function calls. We'll discuss more on this in future posts. Bye for now!

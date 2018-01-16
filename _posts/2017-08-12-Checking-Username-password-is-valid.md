@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Getting User Names and Passwords from Windows Credential Manager using PowerShell - Part 1 - Web Credentials
+title: Checking if a given username and password is valid in PowerShell
 date: 2017-09-10
 category: ScriptSamples
 ---

@@ -10,7 +10,7 @@ Recently I had to prepare VMs with different operating systems for sysrep. I wan
 Below is the script in case someone else needs it.
 Currently I don’t do specific scans for Education and the “N” edition, but its easy to put that in – by adding additional findstr clauses. Hope this helps someone else
 
-<code>
+{% highlight bash %}
     @ECHO off
     setlocal enableextensions
     SET me=%~n0
@@ -338,4 +338,4 @@ Currently I don’t do specific scans for Education and the “N” edition, but
     ECHO %* >> "%GLOBAL_PRPLOG%"
     ECHO %* 
     EXIT /B 0
-</code>
+{% endhighlight %}
