@@ -8,6 +8,7 @@ category: CodeSamples
 Recently, I was interested in enumerating all the sessions that are active on a terminal server and figuring out which sessions used the least CPU. Enumerating TS sessions is relatively easy to do and there are a couple of ways to do it. 
 
 1. You can use the WTSEnumerateSessionsEx API, to get back an array of WTS_SESSION_INFO_1 structures. The advantage of using WTS API is that you can open a handle to a remote machine and enumerate sessions on that machine.
+
 <code>
 
     //-- Enumerate TS sessions
@@ -22,13 +23,14 @@ Recently, I was interested in enumerating all the sessions that are active on a 
 
 2. The second method is to use LsaEnumerateLogonSessions() API to get the logon session LUIDs and then use LsaGetLogonSessionData() API to get details of each session. We'll do this on another day.
 
-Once you have enumerated the sessions and you can make a WMI query to "Win32_PerfFormattedData_TermService_TerminalServicesSession" class to retrieve performance data from ther Terminal Service provider. This may seem complicated, but once you get the hang of it - its easy. 
+Once you have enumerated the sessions and you can make a WMI query to "Win32_PerfFormattedData_TermService_TerminalServicesSession" class to retrieve performance data from ther Terminal Service provider. This may seem complicated, but once you get the hang of it - its easy. I have a code sample for this here: https://github.com/VimalShekar/Cpp/blob/master/src/termsessioncpu/terminalsessionlist.cpp
 
-I have a code sample for this here: https://github.com/VimalShekar/Cpp/blob/master/src/termsessioncpu/terminalsessionlist.cpp
 
 Here's a quick walkthrough:
 1. The first step is to initialize the COM infrastructure.
+
 <code>
+
     //-- Initialize COM and set Security 
     if (FAILED (hr = CoInitializeEx(NULL,COINIT_MULTITHREADED)))
     {
@@ -42,10 +44,13 @@ Here's a quick walkthrough:
         printf("\n COM Security initialization failed with error: %d", hr);
         goto __cleanup;
     }
+
 </code>
 
 2. Next, create an instance of the Wbem locator and connect to the "root\cimv2" WMI namespace. If we were connecting to a remote machine, the namespace name would be "\\\\<server>\\root\\cimv2"
+
 <code>
+
     if (FAILED (hr = CoCreateInstance( CLSID_WbemLocator, NULL, CLSCTX_INPROC_SERVER, IID_IWbemLocator, (void**) &pWbemLocator)))
     {
         printf("\n Failed to create instance of IWbemLocator. Error: %d", hr);
@@ -61,7 +66,9 @@ Here's a quick walkthrough:
 </code>
 
 3. Create an instance of WbemRefresher class. This class helps us retrieve performance data that is periodically refreshed. Use QueryInterface method to retrieve its IWbemConfigureRefresher interface. We will use this interface to configure the WbemRefresher.
+
 <code>
+
     //-- Create a WbemRefresher instance
     if (FAILED (hr = CoCreateInstance( CLSID_WbemRefresher, NULL, CLSCTX_INPROC_SERVER, IID_IWbemRefresher,  (void**) &pRefresher)))
     {
@@ -75,6 +82,7 @@ Here's a quick walkthrough:
         printf("\n failed to create IWbemConfigureRefresher object : %d", hr);
         goto __cleanup;
     }
+    
 </code>
 
 4. Add an Enumerator object for the namespace and class that we are interested in. In this case  "Win32_PerfFormattedData_TermService_TerminalServicesSession" class. The AddEnum() method of the IWbemConfigureRefresher returns a pointer to the IWbemHiPerfEnum.
@@ -85,6 +93,7 @@ Here's a quick walkthrough:
 </code>
 
 5. Now we can call the pRefresher->Refresh(0L) method to get refreshed data any number of times. Use the enumerator to Get the value of the objects. 
+
 <code>
 
         //-- Refresh the data source
@@ -126,6 +135,7 @@ Here's a quick walkthrough:
 7. Now that you have handles to all the attributes you are interested in, you can iterate through the object to retrieve the attributes you are interested in and print them.
 
 8. When it comes to cleaning up - again remember that  GetObjects() returns an array of COM objects. So you have to Release() each object in the array by iterating over them, otherwise you would be leaking memory.
+
 <code>
         //-- cleanup apEnumAccess
         if (NULL != apEnumAccess)
