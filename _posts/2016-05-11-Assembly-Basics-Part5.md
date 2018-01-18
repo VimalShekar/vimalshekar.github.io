@@ -1,8 +1,8 @@
 ---
 layout: post
 category: Reverse-Engg
-title: Assembly Language Basics - Part 4
-date: 2016-04-10
+title: Assembly Language Basics - Part 5
+date: 2016-05-11
 ---
 
 The PE format!
@@ -19,7 +19,7 @@ and space requirements, and in my opinion - this should be your starting point f
 Before we dig into the format, lets take a look at some important terms:
 The actual creation of an executable image is a multi-step process. Several development kits exists to create the image, Microsoft has also provided 
 tools in the SDK/WDK and an integrated development environment called Visual Studio to guide you through this process. The overall work flow looks like this:
-![stages]({{ "/images/imagecreation.jpg" | absolute_url }})
+![stages]({{ "/images/image-creation.jpg" | absolute_url }})
 
 > Assemblers convert assembly language to machine code in the form of object files. These are machine dependent and generally not portable code. Assemblers operate on one source module at a time.
 
@@ -36,16 +36,19 @@ tools in the SDK/WDK and an integrated development environment called Visual Stu
     * Ability to step or trace through code
 
 Debuggers are classified into:
-* low-level debugger – the one that assist in debugging but with the help of
-disassembly
-* symbolic debugger – assists debugging with help of symbols like variable, functions
-names
+* low-level debugger – the one that assist in debugging but with the help of disassembly
+* symbolic debugger – assists debugging with help of symbols like variable, functions names
 * source-level debugger – assists debugging with relevant source code
 
-Now let's get a debugger installed. I dunno about you, but my career didn’t start out 
+Debuggers are also classified into:
+* User mode debuggers - ones that can attach to any user mode process. Ex:  Ollydbg, Immunity debugger, windbg
+* Kernel mode debuggers - one that can attach to the kernel of a running machine. Ex: kdb, and windbg
+
+
+Now that we know these terms, let's get a debugger installed. I dunno about you, but my career didn’t start out 
 with programming. I did my engineering in Electronics and had some background with Microprocessors and micro controller programming. In my current 
 role as an EE, we deal with analysing process, kernel and complete dumps all the time. The first debugger introduced to me was windbg, and so even 
-before I started writing production quality code, I had windbg on my machine. 
+before I started writing production quality code, I had windbg on my machine. Windbg is my tool of choice mainly because it is both a user mode and a kernel mode debugger, and because it has a framework that lets me develop extensions and download necessary symbols.
 
 If you’re a Windows guy like me, then you can get the Software development kit (which includes a compiler) and the Debugging tools for 
 Windows together as part of the Windows SDK. At the time of writing, the SDK for 8.1 was the latest – you can download it from the below 
