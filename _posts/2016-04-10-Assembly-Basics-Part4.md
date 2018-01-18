@@ -5,7 +5,7 @@ title: Assembly Language Basics - Part 4
 date: 2016-04-10
 ---
 
-# Calling Conventions
+# Anatomy of a Function
 
 Reverse engineering is an art as much as it is a skill. To learn reverse engineering you should have strong knowledge of at least one programming language and should know the inner workings of at least one compiler. If you don't, then the knowledge you gain will always have gaps. That statement may dishearten you at first, but you will realize its importance when you take up revering projects that are more complex in nature.
 
