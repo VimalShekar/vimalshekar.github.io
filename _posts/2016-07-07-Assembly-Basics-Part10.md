@@ -1,7 +1,7 @@
 ---
 layout: post
 category: Reverse-Engg
-title: Assembly Language Basics - Part 9
+title: Assembly Language Basics - Part 10
 date: 2016-07-07
 ---
 

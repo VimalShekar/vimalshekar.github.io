@@ -212,12 +212,16 @@ b. If an exception causes an error code to be saved, it is pushed on the current
 
     .. snip .. 
 
+- Acquire the spinlock for this interrupt object and then call the ISR
+
     nt!KiInterruptDispatch+0x159:
     fffff800`02686469 488b4e48 mov rcx,qword ptr [rsi+48h]
     fffff800`0268646d e83ea1ffff call nt!KeAcquireSpinLockAtDpcLevel (fffff800`026805b0) <– interrupt Spinlock
     fffff800`02686472 488bce mov rcx,rsi
     fffff800`02686475 488b5630 mov rdx,qword ptr [rsi+30h]
     fffff800`02686479 ff5118 call qword ptr [rcx+18h] >>> actual ISR is called
+
+- Release the spinlock once call returns.
 
     kd> dt nt!_KINTERRUPT fffff80002c24000 ServiceRoutine
     +0x018 ServiceRoutine : 0xfffff800`02bf52bc unsigned char hal!HalpApicSpuriousService+0
@@ -262,25 +266,10 @@ b. If an exception causes an error code to be saved, it is pushed on the current
     fffff800`026864f4 e8f7ab0800 call nt!KiBeginCounterAccumulation (fffff800`027110f0) <---— probably to accumulate clock ticks
     fffff800`026864f9 65488b0c2520000000 mov rcx,qword ptr gs:[20h]
     
-    nt!KiInterruptDispatch+0x1f2:
-    fffff800`02686502 8a5106 mov dl,byte ptr [rcx+6]
-    fffff800`02686505 80610600 and byte ptr [rcx+6],0
-    fffff800`02686509 80790700 cmp byte ptr [rcx+7],0
-    fffff800`0268650d 7529 jne nt!KiInterruptDispatch+0x228 (fffff800`02686538) Branch
-    
-    nt!KiInterruptDispatch+0x1ff:
-    fffff800`0268650f 84d2 test dl,dl
-    fffff800`02686511 7425 je nt!KiInterruptDispatch+0x228 (fffff800`02686538) Branch
-    
-    nt!KiInterruptDispatch+0x203:
-    fffff800`02686513 807da902 cmp byte ptr [rbp-57h],2
-    fffff800`02686517 730b jae nt!KiInterruptDispatch+0x214 (fffff800`02686524) Branch
-    
-    nt!KiInterruptDispatch+0x209:
-    fffff800`02686519 80612000 and byte ptr [rcx+20h],0
-    fffff800`0268651d e81eff0400 call nt!KiDpcInterruptBypass (fffff800`026d6440)
-    fffff800`02686522 eb17 jmp nt!KiInterruptDispatch+0x22b (fffff800`0268653b) Branch
-    
+    .. snip ..
+
+- Check if any other interrupts are signalled, if nothing else is signalled - set the DPC interrupt to drain the DPC queue.
+
     nt!KiInterruptDispatch+0x214:
     fffff800`02686524 b902000000 mov ecx,2
     fffff800`02686529 ff15e91b1300 call qword ptr [nt!_imp_HalRequestSoftwareInterrupt (fffff800`027b8118)] <– DPC interrupt
@@ -308,35 +297,14 @@ b. If an exception causes an error code to be saved, it is pushed on the current
     fffff800`02686570 e85b7bffff call nt!KiInitiateUserApc (fffff800`0267e0d0) <<– if there were any APCs
     fffff800`02686575 fa cli
     fffff800`02686576 b900000000 mov ecx,0
-    fffff800`0268657b 440f22c1 mov cr8,rcx
+    fffff800`0268657b 440f22c1 mov cr8,rcx  <---- Lower the IRQL fo 0
     
     nt!KiInterruptDispatch+0x26f:
     fffff800`0268657f 65488b0c2588010000 mov rcx,qword ptr gs:[188h]
     fffff800`02686588 f70100000240 test dword ptr [rcx],40020000h
     fffff800`0268658e 7425 je nt!KiInterruptDispatch+0x2a5 (fffff800`026865b5) Branch
     
-    nt!KiInterruptDispatch+0x280:
-    fffff800`02686590 f6410202 test byte ptr [rcx+2],2
-    fffff800`02686594 740e je nt!KiInterruptDispatch+0x294 (fffff800`026865a4) Branch
     
-    nt!KiInterruptDispatch+0x286:
-    fffff800`02686596 e885d30900 call nt!KiCopyCounters (fffff800`02723920)
-    fffff800`0268659b 65488b0c2588010000 mov rcx,qword ptr gs:[188h]
-    
-    nt!KiInterruptDispatch+0x294:
-    fffff800`026865a4 f6410340 test byte ptr [rcx+3],40h
-    fffff800`026865a8 740b je nt!KiInterruptDispatch+0x2a5 (fffff800`026865b5) Branch
-
-    nt!KiInterruptDispatch+0x29a:
-    fffff800`026865aa 488d6580 lea rsp,[rbp-80h]
-    fffff800`026865ae b101 mov cl,1
-    fffff800`026865b0 e80b3f0000 call nt!KiUmsExit (fffff800`0268a4c0)
-    
-    nt!KiInterruptDispatch+0x2a5:
-    fffff800`026865b5 0fae55ac ldmxcsr dword ptr [rbp-54h]
-    fffff800`026865b9 6683bd8000000000 cmp word ptr [rbp+80h],0
-    fffff800`026865c1 7405 je nt!KiInterruptDispatch+0x2b8 (fffff800`026865c8) Branch
-
 — Restoring registers.
 
     nt!KiInterruptDispatch+0x2b3:

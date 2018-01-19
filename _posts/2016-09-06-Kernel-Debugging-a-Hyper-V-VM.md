@@ -9,19 +9,21 @@ Now that you have the debugger installed – lets dig in and attach it to a virt
 
 
 The easiest way to do this is through powershell:
-> Launch powershell as an admin.
-> If the VM’s State is not Off, then turn off the VM either through GUI or by using : `Stop-VM <VMName> -TurnOff`
-> Run: `Get-VM <VMName> | format-Table Name, State, Generation`
+>* Launch powershell as an admin.
+>* If the VM’s State is not Off, then turn off the VM either through GUI or by using : `Stop-VM <VMName> -TurnOff`
+>* Run: `Get-VM <VMName> | format-Table Name, State, Generation`
 
-> If the VM is a generation 2 VM, then ensure that Secure boot is turned off.
+>* If the VM is a generation 2 VM, then check if Secure boot is turned off.
 `Get-VMFirmware <VMName> | ft VMName, SecureBoot`
+
+>* Turn off secure boot if it is enabled using:
 `Set-VMFirmware <VMName> -EnableSecureBoot Off`
 
-> Set the Comport of the VM to a named pipe. You can then connect to this named pipe from windbg.
+>* Set the Comport of the VM to a named pipe. You can then connect to this named pipe from windbg.
 `Set-VMComport -VMName <VmName> -Number 1 -Path \\.\pipe\<PipeName>`
 
-> To verify: `Get-VMComport -VMName <VMName>`
-> Start the Virtual Machine: `Start-VM <VMName>`
+>* To verify: `Get-VMComport -VMName <VMName>`
+>* Start the Virtual Machine: `Start-VM <VMName>`
 
 # Enabling Debug mode within the VM
 Once logged in to the VM, we need to ensure that debugging mode is ON and configure the COM port speed. Log into the VM, and then use one of these methods:
