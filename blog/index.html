@@ -4,19 +4,6 @@ layout: default
 
 <h1>{{ page.title }}</h1>
 
-# Posts by category:
-<ul class="posts">
-    {% for category in site.categories %}
-        {% for post in site.posts %}
-            {% if post.category == category %}
-            <li>
-                <a href="{{ post.url }}"> {{ post.title }} </a> <span>{{ post.date | date_to_string }} -- {{post.category}} </span>
-            </li>
-            {% endif %}
-        {% endfor %}
-    {% endfor %}
-</ul>
-
 # Posts by date:
 <ul class="posts">
     {% for post in site.posts %}
