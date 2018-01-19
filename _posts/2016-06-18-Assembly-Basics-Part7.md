@@ -135,6 +135,7 @@ The new version of windbg adds hyper links for resolvable structures like the Fi
 
 I have added comments to the important members of the structure. If you compare this with the output from the `!dh <base address>` command, you will see that most of the details are the same. `!dh` actually parsed these headers and listed the details for you.
 
+{% highlight cpp %}
 0:000> !dh 00007ff6`3f030000
 
 File Type: EXECUTABLE IMAGE
@@ -180,4 +181,6 @@ OPTIONAL HEADER VALUES
             Guard
             Terminal server aware
 
-well, that's it for now - hang around for more in the next post!
+{% endhighlight %}
+
+That's it for now - hang around for more in the next post!

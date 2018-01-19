@@ -8,7 +8,8 @@ date: 2016-05-11
 # Executable image creation:
 Programs are nothing but executable files containing instructions that will be exected on the CPU. The actual creation of an executable image is a multi-step process. Several development kits exists to create the image, Microsoft has also provided 
 tools in the SDK/WDK and an integrated development environment called Visual Studio to guide you through this process. The overall work flow looks like this:
-![stages]({{ "/images/image-creation.jpg" | absolute_url }})
+
+> ![stages]({{ "/images/image-creation.jpg" | absolute_url }})
 
 Lets look at a few commonly used terms:
 > Assemblers convert assembly language to machine code in the form of object files. These are machine dependent and generally not portable code. Assemblers operate on one source module at a time.
@@ -66,7 +67,7 @@ When it comes to user mode debugging, Windbg allows you to either launch a proce
 * Once windbg is up and running, choose the "Open Executable" option in the File Menu.
 * In the File Open Dialog box, point to C:\Windows\notepad.exe and click ok. After a few seconds you will see the below screen.
 
-![windbg-open]({{ "/images/windbg-open.jpg" | absolute_url }})
+> ![windbg-open]({{ "/images/windbg-window.jpg" | absolute_url }})
 
 Once a process is launched under the debugger, the debugger loads all the binary and its dependent dlls, initialises the process and then breaks. You will see the list of loaded dlls in the output window, and the command window will now be ready to receive commands. At this point you can start entering commands and control execution. 
 
