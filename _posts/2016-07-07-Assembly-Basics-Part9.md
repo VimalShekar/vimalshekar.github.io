@@ -233,4 +233,4 @@ x86!StandardCall+0x4a [63]:
 
 {% endhighlight %}
 
-Thats it for now, I'll cover Fast call in the next post.
+Thats it for now, I'll cover Fast call in the next post. 
