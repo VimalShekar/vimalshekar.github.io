@@ -141,7 +141,7 @@ This is the convention used by all win32 API. Caller pushes arguments into the s
 > * Called routine responsible for cleaning up the stack even for the parameters. Caller continues without any further actions.
 > * Functions symbolized with “_” prefix and @<number of bytes for arguments> after the function name.
 
-{% highlight cpp%}
+{% highlight cpp %}
 
 //-- If you use the __stdcall prefix, Microsoft compiler treats it as a stdcall
 
@@ -231,6 +231,6 @@ x86!StandardCall+0x4a [63]:
 010afe40  010afe98
 010afe44  00f72d30 
 
-{% end highlight %}
+{% endhighlight %}
 
 Thats it for now, I'll cover Fast call in the next post.
