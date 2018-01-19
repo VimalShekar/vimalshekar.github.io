@@ -1,15 +1,18 @@
 ---
 layout: default
 ---
+
 <div class="PageNavigation">
   {% if page.previous.url %}
-    <a class="prev" href="{{page.previous.url}}">Previous Post : {{page.previous.title}}</a>
+  Previous Post:
+    <a class="prev" href="{{page.previous.url}}">{{page.previous.title}}</a>
   {% endif %}
-      | 
+      | Next Post: 
   {% if page.next.url %}
-    <a class="next" href="{{page.next.url}}"> Next Post : {{page.next.title}}</a>
+    <a class="next" href="{{page.next.url}}">{{page.next.title}}</a>
   {% endif %}
 </div>
+
 
 <h1>{{ page.title }}</h1>
 <p class="meta">{{ page.date | date_to_string }}</p>
@@ -21,13 +24,13 @@ layout: default
 
 </div>
 
-
 <div class="PageNavigation">
   {% if page.previous.url %}
-    <a class="prev" href="{{page.previous.url}}">Previous Post : {{page.previous.title}}</a>
+  Previous Post:
+    <a class="prev" href="{{page.previous.url}}">{{page.previous.title}}</a>
   {% endif %}
-      | 
+      | Next Post: 
   {% if page.next.url %}
-    <a class="next" href="{{page.next.url}}"> Next Post : {{page.next.title}}</a>
+    <a class="next" href="{{page.next.url}}">{{page.next.title}}</a>
   {% endif %}
 </div>
