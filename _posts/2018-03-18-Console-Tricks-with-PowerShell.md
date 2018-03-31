@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Console Tricks with Powershell
-date: 2017-12-30
-category: CodeSamples
+date: 2018-03-18
+category: ScriptSamples
 ---
 
 I was recently writing a script that performs tasks that take time. I wanted a way to show the status to the user on a single line and keep updating the line. There is the Write-Progress cmdlet, but I didn't want to use that. Playing with the Console has been relatively difficult in PowerShell, but its easier in .NET. 
