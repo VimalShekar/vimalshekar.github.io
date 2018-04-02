@@ -5,6 +5,8 @@ Hi There!
 
 This is Vimal, Welcome to my page. 
 I am a software developer with about 8 years of IT experience. You can read about my roles on my LinkedIn Profile here:
+
+<script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>      
 <div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="en_US" data-type="horizontal" data-theme="dark" data-vanity="vimalsh"><a class="LI-simple-link" href='https://au.linkedin.com/in/vimalsh?trk=profile-badge'>Vimal Shekar</a></div>
 
 In short:
