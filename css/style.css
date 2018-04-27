@@ -9,9 +9,10 @@
 
 
 .container {
-    width: 90%;  
-    max-width: 800px;  
-    margin: 0 auto;  
+    width: 80%;  
+    max-width: 800px;
+    padding: 25px;
+    margin: 25px;  
   }
   
   
