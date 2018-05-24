@@ -4,15 +4,19 @@
 ---
 
 
-
 @import 'jekyll-theme-hacker';
 
-
 .container {
-    width: 80%;  
-    max-width: 800px;
+    width: 75%;  
+    max-width: 700px;
     padding: 25px;
     margin: 25px;  
   }
   
+.mycontainer {
+    width: 78%;  
+    max-width: 800px;
+    padding: 30px;
+    margin: 30px;  
+  }
   

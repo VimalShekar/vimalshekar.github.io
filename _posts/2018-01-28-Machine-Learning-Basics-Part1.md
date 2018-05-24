@@ -8,9 +8,9 @@ category: MachineLearning
 
 "*Technology is like the "Drink me" potion from Alice in Wonderland*"
 
-At some point in my career - I was neck deep into assembly level debugging, and started off this blog to save some lessons for my self and others. Now, I'm at another point in my career - (in another country too) where I'm neck deep in Cloud automation and Machine Learning.
+At some point in my career - I was engaged in assembly level debugging, and started off this blog to save some lessons for my self and others. Now, I'm at another point in my career - (in another country too) and engaged in Cloud automation and Machine Learning.
 
-The shift almost feels like moving from observing molecular structures under a microscope to observing distant planets looking for life. I almost feel like Alice in Wonderland - who took the Drink Me potion. But I aint complaining, in fact - I'm enjoying the ride. Technology has grown leaps and bounds in my lifetime and Its a humbling feeling to know that I could witness, learn and hopefully be a part of this.
+The shift almost feels like moving from observing molecular structures under a microscope to observing distant planets looking for life. I almost feel like Alice in Wonderland - who took the Drink Me potion. But I cant complain. Technology has grown leaps and bounds in my lifetime and Its a humbling feeling to know that I could witness, learn and hopefully be a part of this.
 
 So here I am - getting started on this blog series to share my learnings for my future self and hopefully others.
 
