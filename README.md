@@ -21,8 +21,6 @@ If you find any of the content useful – do drop a mail 🙂
 ~ Vimal 
 
 
-<div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="en_US" data-type="horizontal" data-theme="dark" data-vanity="vimalsh"><a class="LI-simple-link" href='https://au.linkedin.com/in/vimalsh?trk=profile-badge'>Vimal Shekar</a></div>
-
 ```
   
 Here's how you could reach me for any reason:
