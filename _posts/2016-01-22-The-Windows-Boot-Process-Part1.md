@@ -2,7 +2,7 @@
 layout: post
 category: WindowsInternals
 title: The Windows Boot Process Part 1
-date: 2023-01-22
+date: 2016-01-22
 ---
 
 Recently I was going through my notes from when I was a support engineer for Windows and found some nice goodies to share - much of it may be legacy at this point though, but still worth recording - so here goes. 
